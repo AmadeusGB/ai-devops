@@ -88,12 +88,25 @@ Hooks 在特定事件时自动执行，提供智能提示：
 
 ### 4. Commands（工作流命令）
 
-Commands 是预定义的工作流程（规划中，欢迎贡献）：
+Commands 是预定义的工作流程，自动生成结构化文档：
 
-- **部署命令**：自动化部署流程
-- **监控命令**：系统健康检查
-- **应急命令**：事件响应流程
-- **基础设施命令**：IaC 管理操作
+#### /dev-docs（开发文档命令）
+- **用途**：创建开发任务计划和文档
+- **使用**：`/dev-docs refactor authentication system`
+- **输出**：在 `dev/active/[task-name]/` 生成计划文档、上下文文档、任务清单
+- **适用**：大型功能开发、重构任务、架构变更规划
+
+#### /ops-docs（运维文档命令）
+- **用途**：创建运维操作文档和检查清单
+- **使用**：`/ops-docs database migration from PostgreSQL 12 to 15`
+- **输出**：在 `ops/active/[task-name]/` 生成：
+  - **运维手册** (runbook) - 完整操作步骤和验证检查
+  - **回滚方案** (rollback) - 详细回滚步骤和触发条件
+  - **检查清单** (checklist) - 可打印的执行清单
+  - **事后总结模板** (postmortem) - 复盘报告模板
+- **适用**：数据库迁移、集群升级、CDN 切换、证书更新等重大运维操作
+
+**更多命令**：可在 `.claude/commands/` 添加自定义工作流命令
 
 ## 🚀 快速开始
 
@@ -199,6 +212,46 @@ web-research-specialist agent 帮你快速找到解决方案：
 
 Claude: [启动 agent]
         [在线搜索、整理方案、对比优缺点、给出建议]
+```
+
+### 场景 5：生成运维操作文档
+
+使用 /ops-docs 命令为重大运维任务生成完整文档：
+
+```
+你: "/ops-docs PostgreSQL 数据库从 12 升级到 15"
+
+Claude: [自动生成完整运维文档]
+        ✅ 已创建运维文档：
+        - ops/active/2025-11-03-postgres-upgrade-v12-to-v15/
+          ├── postgres-upgrade-runbook.md      (完整操作手册)
+          ├── postgres-upgrade-rollback.md     (回滚方案)
+          ├── postgres-upgrade-checklist.md    (可打印清单)
+          └── postgres-upgrade-postmortem.md   (事后总结模板)
+
+        运维手册包含：
+        - 详细操作步骤（可直接执行的命令）
+        - 每步验证检查点
+        - Go/No-Go 决策点
+        - 监控指标
+
+        回滚方案包含：
+        - 回滚触发条件
+        - 完整回滚步骤
+        - 数据恢复程序
+
+        请在执行前：
+        1. 团队评审文档
+        2. 非生产环境演练
+        3. 验证备份可用
+```
+
+**更多使用示例**：
+```
+/ops-docs Kubernetes 集群升级到 v1.28
+/ops-docs CDN 从 CloudFlare 切换到 AWS CloudFront
+/ops-docs Redis 集群扩容和数据迁移
+/ops-docs SSL 证书更新和自动化配置
 ```
 
 ## 🛠️ 技术栈
