@@ -168,6 +168,91 @@
                     "Parameters:"
                 ]
             }
+        },
+        "container-orchestration": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "容器编排最佳实践。涵盖 Docker、Kubernetes、Docker Compose 等容器技术的使用规范和配置模式。",
+            "promptTriggers": {
+                "keywords": [
+                    "docker",
+                    "dockerfile",
+                    "kubernetes",
+                    "k8s",
+                    "kubectl",
+                    "container",
+                    "containerization",
+                    "docker-compose",
+                    "docker compose",
+                    "pod",
+                    "deployment",
+                    "service",
+                    "ingress",
+                    "helm",
+                    "kustomize",
+                    "容器",
+                    "编排",
+                    "镜像",
+                    "部署",
+                    "容器化",
+                    "微服务",
+                    "集群"
+                ],
+                "intentPatterns": [
+                    "(create|write|modify|update).*?(dockerfile|docker-compose|kubernetes|container)",
+                    "(build|deploy|run).*?(docker|container|image|pod)",
+                    "(how to|best practice).*?(docker|kubernetes|container|orchestration)",
+                    "(创建|编写|修改|更新).*?(dockerfile|docker-compose|kubernetes|容器)",
+                    "(构建|部署|运行).*?(docker|容器|镜像|pod)",
+                    "(如何|怎么|怎样|最佳实践).*?(docker|kubernetes|容器|编排)"
+                ]
+            },
+            "fileTriggers": {
+                "pathPatterns": [
+                    "**/Dockerfile",
+                    "**/Dockerfile.*",
+                    "**/.dockerignore",
+                    "**/docker-compose.yml",
+                    "**/docker-compose.yaml",
+                    "**/docker-compose.*.yml",
+                    "**/docker-compose.*.yaml",
+                    "**/*.deployment.yaml",
+                    "**/*.deployment.yml",
+                    "**/*.service.yaml",
+                    "**/*.service.yml",
+                    "**/k8s/**/*.yaml",
+                    "**/k8s/**/*.yml",
+                    "**/kubernetes/**/*.yaml",
+                    "**/kubernetes/**/*.yml",
+                    "**/charts/**/*",
+                    "**/kustomization.yaml",
+                    "**/kustomization.yml"
+                ],
+                "pathExclusions": [
+                    "**/node_modules/**",
+                    "**/.git/**",
+                    "**/dist/**",
+                    "**/build/**"
+                ],
+                "contentPatterns": [
+                    "FROM ",
+                    "RUN ",
+                    "COPY ",
+                    "ENTRYPOINT",
+                    "CMD ",
+                    "apiVersion:",
+                    "kind: Deployment",
+                    "kind: Service",
+                    "kind: Pod",
+                    "kind: Ingress",
+                    "kind: ConfigMap",
+                    "kind: Secret",
+                    "containers:",
+                    "image:",
+                    "docker-compose version"
+                ]
+            }
         }
     },
     "notes": {
