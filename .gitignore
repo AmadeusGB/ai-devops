@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+.claude/hooks/node_modules/
+
+# Claude Code state
+.claude/hooks/state/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+*~

@@ -1,0 +1,120 @@
+{
+    "version": "1.0",
+    "description": "AI DevOps 项目的技能激活触发器配置。控制技能何时自动提示或阻止操作。",
+    "skills": {
+        "skill-developer": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "创建和管理 Claude Code 技能的元技能。用于开发新的 DevOps 技能、修改技能规则、理解触发模式、调试技能激活等。",
+            "promptTriggers": {
+                "keywords": [
+                    "skill system",
+                    "create skill",
+                    "add skill",
+                    "skill triggers",
+                    "skill rules",
+                    "hook system",
+                    "skill development",
+                    "skill-rules.json",
+                    "技能",
+                    "创建技能",
+                    "添加技能",
+                    "技能系统",
+                    "技能触发",
+                    "技能规则",
+                    "技能开发",
+                    "hook系统",
+                    "开发技能",
+                    "skill 开发"
+                ],
+                "intentPatterns": [
+                    "(how do|how does|explain).*?skill",
+                    "(create|add|modify|build).*?skill",
+                    "skill.*?(work|trigger|activate|system)",
+                    "(如何|怎么|怎样).*?(创建|添加|修改).*?技能",
+                    "(创建|添加|修改|构建).*?技能",
+                    "技能.*?(系统|触发|激活|工作)"
+                ]
+            }
+        },
+        "error-tracking": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "错误追踪和性能监控模式。用于 Sentry 集成、错误捕获、性能监控等运维场景。",
+            "promptTriggers": {
+                "keywords": [
+                    "error handling",
+                    "exception",
+                    "sentry",
+                    "error tracking",
+                    "captureException",
+                    "monitoring",
+                    "performance tracking",
+                    "错误处理",
+                    "异常",
+                    "错误追踪",
+                    "性能监控",
+                    "监控",
+                    "追踪错误",
+                    "捕获异常",
+                    "日志",
+                    "告警",
+                    "故障",
+                    "问题排查"
+                ],
+                "intentPatterns": [
+                    "(add|create|implement|setup).*?(error handling|sentry|error tracking|monitoring)",
+                    "(fix|handle|catch).*?(error|exception)",
+                    "(how to|best practice).*?(error|sentry|monitoring)",
+                    "(添加|创建|实现|设置).*?(错误处理|错误追踪|Sentry|监控)",
+                    "(修复|处理|捕获).*?(错误|异常|故障)",
+                    "(如何|怎么|怎样|最佳实践).*?(错误|Sentry|监控|追踪)"
+                ]
+            },
+            "fileTriggers": {
+                "pathPatterns": [
+                    "**/instrument.ts",
+                    "**/instrument.js",
+                    "**/sentry*.ts",
+                    "**/sentry*.js",
+                    "**/*monitoring*.ts",
+                    "**/*monitoring*.js",
+                    "**/*logging*.ts",
+                    "**/*logging*.js",
+                    "**/scripts/**/*.sh",
+                    "**/scripts/**/*.py"
+                ],
+                "contentPatterns": [
+                    "@sentry",
+                    "Sentry\\.",
+                    "captureException",
+                    "captureMessage",
+                    "logger\\.",
+                    "console\\.error",
+                    "try.*catch"
+                ]
+            }
+        }
+    },
+    "notes": {
+        "enforcement_types": {
+            "suggest": "技能建议出现但不阻止执行",
+            "block": "需要使用技能才能继续（防护栏）",
+            "warn": "显示警告但允许继续"
+        },
+        "priority_levels": {
+            "critical": "最高 - 匹配时始终触发",
+            "high": "重要 - 大多数匹配时触发",
+            "medium": "中等 - 明确匹配时触发",
+            "low": "可选 - 仅显式匹配时触发"
+        },
+        "customization": {
+            "pathPatterns": "根据项目结构调整路径模式",
+            "keywords": "添加项目相关的领域特定术语",
+            "intentPatterns": "使用正则表达式灵活匹配用户意图"
+        },
+        "devops_focus": "本配置专注于 DevOps 场景，包括监控、错误追踪、自动化运维等。可以通过 skill-developer 创建新的 DevOps 相关技能。"
+    }
+}
