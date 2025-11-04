@@ -96,6 +96,78 @@
                     "try.*catch"
                 ]
             }
+        },
+        "infrastructure-as-code": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "基础设施即代码（IaC）最佳实践。涵盖 Terraform、Ansible、CloudFormation 等工具的使用规范和配置模式。",
+            "promptTriggers": {
+                "keywords": [
+                    "terraform",
+                    "ansible",
+                    "infrastructure",
+                    "deployment config",
+                    "cloudformation",
+                    "iac",
+                    "infrastructure as code",
+                    "provisioning",
+                    "基础设施",
+                    "部署配置",
+                    "自动化部署",
+                    "基础设施代码",
+                    "资源编排",
+                    "云资源",
+                    "tfvars",
+                    "playbook",
+                    "stack",
+                    "模块化",
+                    "状态管理"
+                ],
+                "intentPatterns": [
+                    "(create|write|modify|update).*?(terraform|ansible|cloudformation|infrastructure)",
+                    "(deploy|provision|orchestrate).*?(infrastructure|resources|servers)",
+                    "(how to|best practice).*?(iac|terraform|ansible|infrastructure)",
+                    "(创建|编写|修改|更新).*?(terraform|ansible|基础设施|部署)",
+                    "(部署|编排|配置).*?(基础设施|资源|服务器)",
+                    "(如何|怎么|怎样|最佳实践).*?(基础设施|terraform|ansible|IaC)"
+                ]
+            },
+            "fileTriggers": {
+                "pathPatterns": [
+                    "**/*.tf",
+                    "**/*.tfvars",
+                    "**/terraform/**/*",
+                    "**/*.yml",
+                    "**/*.yaml",
+                    "**/ansible/**/*",
+                    "**/playbooks/**/*",
+                    "**/roles/**/*",
+                    "**/cloudformation/**/*",
+                    "**/*-stack.json",
+                    "**/*-stack.yaml"
+                ],
+                "pathExclusions": [
+                    "**/.terraform/**",
+                    "**/node_modules/**",
+                    "**/*.test.*",
+                    "**/*.spec.*"
+                ],
+                "contentPatterns": [
+                    "resource \"",
+                    "provider \"",
+                    "module \"",
+                    "variable \"",
+                    "terraform {",
+                    "- hosts:",
+                    "- name:",
+                    "  tasks:",
+                    "  roles:",
+                    "AWSTemplateFormatVersion",
+                    "Resources:",
+                    "Parameters:"
+                ]
+            }
         }
     },
     "notes": {
